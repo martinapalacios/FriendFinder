@@ -5,7 +5,7 @@ const path = require("path");
 
 const app = express();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 // For serving of static CSS
 app.use(express.static(__dirname + "/app/css")); //
