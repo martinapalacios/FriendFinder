@@ -1,0 +1,99 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: url("../images/football-field-1428839.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.jumbotron {
+  background-color: inherit;
+}
+
+.btn-lg {
+  align-content: center;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+h1 {
+  font-family: "Baloo", cursive;
+  font-size: 4em;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #050505;
+}
+
+h5 {
+  color: #fc0707;
+  font-size: 20px;
+  text-align: center;
+  max-width: 60%;
+  line-height: 1.75;
+  margin: auto;
+}
+
+p {
+  text-align: center;
+  max-width: 60%;
+  line-height: 1.75;
+  margin: auto;
+  /* font-size: 1.2em; */
+}
+
+footer {
+  text-align: right;
+  background: #fff;
+  padding: 15px;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  margin: 30px;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #fc0707;
+}
+
+form {
+  margin-top: 20px;
+}
+
+a {
+  color: #0804f0;
+  font-size: 18px;
+}
+
+#bestFriendModal {
+  text-align: center;
+}
+
+#bestFriendPhoto {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  margin-top: 25px;
+  margin-bottom: 50px;
+  border: 0;
+  border-top: 3px solid #050505;
+}
