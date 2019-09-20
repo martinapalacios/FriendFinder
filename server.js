@@ -14,6 +14,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+// app.get("/", function(req, res) {
+//   res.sendFile("home.html");
+// });
+
+// app.get("/", function(req, res) {
+//   res.sendFile("survey.html");
+// });
+
 // API and HTML routes
 require("./app/routing/apiRoutes.js")(app);
 require("./app/routing/htmlRoutes.js")(app);
