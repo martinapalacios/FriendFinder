@@ -1,6 +1,11 @@
 let friends = require("../data/friends");
 
-let friendList = [];
+let friendList = [
+  "Austin",
+  "https://images-na.ssl-images-amazon.com/images/I/31oh8uQVYrL._SX331_BO1,204,203,200_.jpg",
+  "40"
+];
+
 let peopleList = [];
 
 module.exports = function(app) {
