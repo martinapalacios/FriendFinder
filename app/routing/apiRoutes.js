@@ -1,62 +1,46 @@
-let friends = require("../data/friends");
-
-let friendList = [
-  "Austin",
-  "https://images-na.ssl-images-amazon.com/images/I/31oh8uQVYrL._SX331_BO1,204,203,200_.jpg",
-  "40"
-];
-
-let peopleList = [];
+var friends = require("../data/friends");
 
 module.exports = function(app) {
   // Return all friends found in friends.js as JSON
-  app.get("/api/friends", function(req, res, next) {
+  app.get("/api/friends", function(req, res) {
     res.json(friends);
   });
-  app.post("/api/friends", function(req, res, next) {
-    // console.log(req.body);
 
-    function getFinalScore() {
-      let finalScore = 0;
-      for (let i = 0; i < req.body.scores.length; i++) {
-        // console.log (req.body.scores[i])
-        finalScore += parseInt(req.body.scores[i]);
-      }
-      // console.log(finalScore);
-      return finalScore;
+  app.post("/api/friends", function(req, res) {
+    console.log(req.body.scores);
+
+    // Receive user details (name, photo, scores)
+    var user = req.body;
+
+    // parseInt for scores
+    for (var i = 0; i < user.scores.length; i++) {
+      user.scores[i] = parseInt(user.scores[i]);
     }
 
-    let userMagicNumber = getFinalScore();
-    // console.log(userMagicNumber);
-    let userName = req.body.name;
-    let userImage = req.body.photo;
-    let newUser = {
-      name: userName,
-      photo: userImage,
-      magic: userMagicNumber
-    };
+    // default friend match is the first friend but result will be whoever has the minimum difference in scores
+    var bestFriendIndex = 0;
+    var minimumDifference = 40;
 
-    friendList = [];
+    // in this for-loop, start off with a zero difference and compare the user and the ith friend scores, one set at a time
+    //  whatever the difference is, add to the total difference
+    for (var i = 0; i < friends.length; i++) {
+      var totalDifference = 0;
+      for (var j = 0; j < friends[i].scores.length; j++) {
+        var difference = Math.abs(user.scores[j] - friends[i].scores[j]);
+        totalDifference += difference;
+      }
 
-    for (let i = 0; i < peopleList.length; i++) {
-      console.log(peopleList[i].name, peopleList[i], magic);
-      if (newUser.magic > 30) {
-        if (peopleList[i].magic > 30) {
-          friendList.push(peopleList[i]);
-        }
-      } else {
-        if (peopleList[i].magic < 30) {
-          friendList.push(peopleList[1]);
-        }
+      // if there is a new minimum, change the best friend index and set the new minimum for next iteration comparisons
+      if (totalDifference < minimumDifference) {
+        bestFriendIndex = i;
+        minimumDifference = totalDifference;
       }
     }
 
-    peopleList.push(newUser);
-    // console.log("newUser", newUser);
-    // console.log("friends", friendList);
-    // console.log("people", peopleList);
+    // after finding match, add user to friend array
+    friends.push(user);
 
     // send back to browser the best friend match
-    res.redirect("friends");
+    res.json(friends[bestFriendIndex]);
   });
 };
